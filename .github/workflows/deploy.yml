@@ -1,0 +1,28 @@
+name: Deploy to Render & Vercel
+
+on:
+  push:
+    branches:
+      - main
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Deploy to Render
+        env:
+          RENDER_DEPLOY_HOOK: ${{ secrets.RENDER_DEPLOY_HOOK }}
+        run: |
+          curl "$RENDER_DEPLOY_HOOK" 2>&1 || echo "Deploy hook not set"
+
+      - name: Deploy Frontend to Vercel
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        run: |
+          npm install -g vercel
+          cd frontend
+          vercel deploy --prod --token $VERCEL_TOKEN || echo "Vercel token not set"

@@ -1,0 +1,25 @@
+services:
+  postgres:
+    image: postgres:17-alpine
+    container_name: mf_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: mf
+      POSTGRES_PASSWORD: mf_local_dev
+      POSTGRES_DB: mutual_funds
+    ports:
+      # Bound to localhost only; this database is for local analysis.
+      # Host port 5433 (not the default 5432): on some machines something outside
+      # Docker holds 5432 in a way Docker Desktop can't detect or reclaim, so the
+      # container silently gets no port mapping. 5433 avoids that conflict.
+      - '127.0.0.1:5433:5432'
+    volumes:
+      - mf_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U mf -d mutual_funds']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  mf_pgdata:

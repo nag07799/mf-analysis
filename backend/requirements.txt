@@ -1,0 +1,16 @@
+fastapi==0.141.1
+uvicorn==0.52.4
+SQLAlchemy==2.0.52
+psycopg[binary]==3.3.5
+alembic==1.19.2
+pydantic==2.13.5
+pydantic-settings==2.15.0
+PyMuPDF==1.28.2
+pdfplumber==0.11.10
+pandas==3.0.5
+openpyxl==3.1.5
+httpx==0.28.1
+beautifulsoup4==4.15.0
+python-dateutil==2.9.0.post0
+pytest==9.1.1
+playwright==1.58.0
