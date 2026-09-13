@@ -1,9 +1,5 @@
 {
   "buildCommand": "next build",
   "installCommand": "npm install",
-  "outputDirectory": ".next",
-  "env": {
-    "NEXT_PUBLIC_API_URL": "@api_url"
-  },
-  "envPrefix": "NEXT_PUBLIC_"
+  "outputDirectory": ".next"
 }
