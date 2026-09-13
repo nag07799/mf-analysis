@@ -1,0 +1,189 @@
+================================================================================
+                  PUSH CODE TO GITHUB - EXACT COMMANDS
+================================================================================
+
+PREREQUISITES
+=============
+
+✅ GitHub account (create one at https://github.com/signup)
+✅ GitHub repository created (create at https://github.com/new)
+✅ PowerShell or Command Prompt open
+
+STEP 1: Create Empty Repository on GitHub
+==========================================
+
+1. Go to: https://github.com/new
+2. Fill in:
+   Repository name: mf-analysis
+   Description: Indian Equity Mutual Fund Comparison Platform
+   Visibility: Public (important for free tier)
+3. Click: "Create repository"
+4. Copy your repository URL from the page
+
+You should see something like:
+   https://github.com/YOUR_USERNAME/mf-analysis.git
+
+Keep this URL handy!
+
+STEP 2: Open PowerShell
+======================
+
+1. Open File Explorer
+2. Navigate to: C:\Users\nagu0\OneDrive\Desktop\mf_analysis\mutual-fund-overlap
+3. Right-click in the folder
+4. Select: "Open PowerShell window here" or "Open Terminal here"
+
+STEP 3: Run These Commands (One at a Time)
+==========================================
+
+Copy and paste each command. Press Enter after each one.
+
+Command 1 - Set Git to use main branch:
+───────────────────────────────────────
+git branch -M main
+
+
+Command 2 - Add your GitHub repository:
+────────────────────────────────────────
+(Replace YOUR_USERNAME with your actual GitHub username)
+
+git remote add origin https://github.com/YOUR_USERNAME/mf-analysis.git
+
+
+Command 3 - Push your code to GitHub:
+──────────────────────────────────────
+git push -u origin main
+
+
+WHAT HAPPENS NEXT
+=================
+
+You'll see output like:
+
+    Enumerating objects: 71, done.
+    Counting objects: 100% (71/71), done.
+    Delta compression using up to 8 threads
+    Compressing objects: 100% (55/55), done.
+    Writing objects: 100% (71/71), 8475 insertions(+)
+    ...
+     * [new branch]      main -> main
+    Branch 'main' set up to track remote branch 'main' from 'origin'.
+
+If you see this, it worked! ✅
+
+AUTHENTICATION
+==============
+
+GitHub may ask for your password.
+
+DO NOT USE YOUR GITHUB PASSWORD!
+
+Instead, use a Personal Access Token:
+1. Go to: https://github.com/settings/tokens
+2. Click: "Generate new token (classic)"
+3. Select scopes: repo, gist, read:user
+4. Generate and copy the token
+5. Paste this as your "password" when Git asks
+
+VERIFICATION
+============
+
+After pushing, verify it worked:
+
+1. Go to your repository: https://github.com/YOUR_USERNAME/mf-analysis
+2. You should see all your files there
+3. You should see 71 files and the commit message
+4. Click on any file to view it
+
+If you see your files, you're done with this step! ✅
+
+EXAMPLE OUTPUT
+==============
+
+Here's what success looks like:
+
+PowerShell Output:
+──────────────────
+PS C:\Users\nagu0\OneDrive\Desktop\mf_analysis\mutual-fund-overlap> git branch -M main
+
+PS C:\Users\nagu0\OneDrive\Desktop\mf_analysis\mutual-fund-overlap> git remote add origin https://github.com/myusername/mf-analysis.git
+
+PS C:\Users\nagu0\OneDrive\Desktop\mf_analysis\mutual-fund-overlap> git push -u origin main
+Enumerating objects: 71, done.
+Counting objects: 100% (71/71), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (55/55), done.
+Writing objects: 100% (71/71), 8475 insertions(+)
+remote: Resolving deltas: 100% (12/12), done.
+remote: Create a pull request for 'main' on GitHub by visiting:
+remote:      https://github.com/myusername/mf-analysis/pull/new/main
+ * [new branch]      main -> main
+Branch 'main' set up to track remote branch 'main' from 'origin'.
+
+TROUBLESHOOTING
+===============
+
+Problem: "fatal: not a git repository"
+────────────────────────────────────────
+Solution: Make sure you're in the right folder
+          cd "C:\Users\nagu0\OneDrive\Desktop\mf_analysis\mutual-fund-overlap"
+          Then try git commands again
+
+Problem: "fatal: remote origin already exists"
+──────────────────────────────────────────────
+Solution: You already added the remote. Just run:
+          git push -u origin main
+
+Problem: "Permission denied (publickey)"
+────────────────────────────────────────
+Solution: Use Personal Access Token instead of password
+          Go to: https://github.com/settings/tokens
+
+Problem: "fatal: could not read Username for 'https://github.com'"
+────────────────────────────────────────────────────────────────────
+Solution: Git needs your GitHub credentials
+          When prompted, enter:
+          Username: your-github-username
+          Password: your-personal-access-token (NOT your password!)
+
+Problem: "The remote end hung up unexpectedly"
+────────────────────────────────────────────────
+Solution: Try again (sometimes network is slow):
+          git push -u origin main
+
+NEXT STEPS
+==========
+
+After this command succeeds:
+
+1. ✅ Your code is on GitHub
+2. ✅ Your repository is ready
+3. ✅ Render and Vercel can access your code
+4. → Read: DEPLOY_NOW.md for next steps
+
+QUICK COMMANDS (COPY-PASTE READY)
+==================================
+
+Open PowerShell and paste this entire block (it will work even with newlines):
+
+git branch -M main
+git remote add origin https://github.com/YOUR_USERNAME/mf-analysis.git
+git push -u origin main
+
+Replace YOUR_USERNAME with your actual GitHub username!
+
+VERIFY SUCCESS
+==============
+
+After all commands complete successfully:
+
+1. Go to: https://github.com/YOUR_USERNAME/mf-analysis
+2. You should see your files
+3. You should see "71 commits"
+4. You should see all the deployment files
+
+If you see these, you're done! ✅
+
+NEXT: Follow DEPLOY_NOW.md for Render and Vercel setup
+
+================================================================================

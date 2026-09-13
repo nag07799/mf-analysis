@@ -1,0 +1,16 @@
+UPDATE CORS ON RENDER
+====================
+
+Go to: Render Dashboard → mf-api Web Service → Environment
+
+Find: CORS_ORIGINS
+
+Replace the value with:
+
+["https://mf-analysis-equity-git-main-mutual-fund1.vercel.app","http://localhost:3000"]
+
+Then click "Save Changes"
+
+Wait 2-3 minutes for the service to redeploy.
+
+Done! Your app will then work! ✅

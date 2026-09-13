@@ -1,5 +1,6 @@
 from pathlib import Path
-from pydantic import SecretStr
+import json
+from pydantic import SecretStr, field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
@@ -12,7 +13,17 @@ class Settings(BaseSettings):
     data_root: Path = PROJECT_ROOT / 'data'
     enable_equity_etfs: bool = True
     browser_fallback: bool = True
-    cors_origins: list[str] = ['http://localhost:3000', 'http://127.0.0.1:3000']
+    cors_origins: list[str] = ['https://mf-analysis-equity.vercel.app', 'http://localhost:3000', 'http://127.0.0.1:3000']
+
+    @field_validator('cors_origins', mode='before')
+    @classmethod
+    def parse_cors_origins(cls, v):
+        if isinstance(v, str):
+            try:
+                return json.loads(v)
+            except json.JSONDecodeError:
+                return [v]
+        return v
 
     def archive_root(self) -> Path:
         root = self.data_root if self.data_root.is_absolute() else PROJECT_ROOT / self.data_root

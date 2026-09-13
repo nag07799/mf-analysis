@@ -1,0 +1,8 @@
+Hostname= dpg-dajgjmu7bikc73c0h970-a
+Port=5432
+Database=mf_postgres
+Username=mf_postgres_user
+Password=nxEKM7TcztWRgaX7lia1F3geNQMHym3p
+Internal Database URL= postgresql://mf_postgres_user:nxEKM7TcztWRgaX7lia1F3geNQMHym3p@dpg-dajgjmu7bikc73c0h970-a/mf_postgres
+External Database URL = postgresql://mf_postgres_user:nxEKM7TcztWRgaX7lia1F3geNQMHym3p@dpg-dajgjmu7bikc73c0h970-a.oregon-postgres.render.com/mf_postgres
+PSQL Command= PGPASSWORD=nxEKM7TcztWRgaX7lia1F3geNQMHym3p psql -h dpg-dajgjmu7bikc73c0h970-a.oregon-postgres.render.com -U mf_postgres_user mf_postgres

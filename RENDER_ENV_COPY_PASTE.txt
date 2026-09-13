@@ -1,0 +1,46 @@
+================================================================================
+                    RENDER WEB SERVICE ENV VARIABLES
+                         COPY & PASTE READY
+================================================================================
+
+VARIABLE 1
+==========
+Name: DATABASE_URL
+Value: [PASTE YOUR POSTGRESQL INTERNAL URL FROM rendercreds FILE]
+
+Example: postgresql://mf_user:abc123xyz@dpg-xxxxx.onrender.com:5432/mutual_funds
+
+
+VARIABLE 2
+==========
+Name: CORS_ORIGINS
+Value: http://localhost:3000
+
+
+VARIABLE 3
+==========
+Name: ENVIRONMENT
+Value: production
+
+
+VARIABLE 4 (OPTIONAL)
+=====================
+Name: GEMINI_API_KEY
+Value: (leave empty)
+
+
+================================================================================
+INSTRUCTIONS
+================================================================================
+
+1. Go to Render Dashboard
+2. Click "mf-api" Web Service
+3. Click "Environment" tab
+4. Add each variable above one by one
+5. Click "Save Changes"
+6. Wait 2-3 minutes for redeploy
+7. Check Logs for any errors
+8. Visit: https://mf-api-xxxxxxxxxxxx.onrender.com/health
+   Should show: {"status": "ok", "database": "UP"}
+
+================================================================================

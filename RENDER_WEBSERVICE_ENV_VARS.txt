@@ -1,0 +1,259 @@
+================================================================================
+           RENDER WEB SERVICE - ENVIRONMENT VARIABLES
+================================================================================
+
+When creating Web Service on Render, add these environment variables:
+
+REQUIRED VARIABLES (MUST HAVE)
+==============================
+
+1. DATABASE_URL
+   ──────────────
+   Key:   DATABASE_URL
+   Value: (Copy from your PostgreSQL database credentials)
+
+   Example: postgresql://mf_user:PASSWORD@dpg-xxx.onrender.com:5432/mutual_funds
+
+   Where to find it:
+   ├─ Go to Render Dashboard
+   ├─ Click on "mf-postgres" (your PostgreSQL database)
+   ├─ Copy the "Internal Database URL" (starts with postgresql://)
+   ├─ NOT the "External Database URL" (even though it looks similar)
+   └─ Paste it here
+
+   ⚠️  CRITICAL: Use the INTERNAL URL, not the external one
+
+
+2. CORS_ORIGINS
+   ──────────────
+   Key:   CORS_ORIGINS
+   Value: http://localhost:3000
+
+   Note: We'll update this AFTER Vercel deployment
+         For now, use: http://localhost:3000
+
+         Later change to: https://your-vercel-app.vercel.app,http://localhost:3000
+
+
+3. ENVIRONMENT
+   ────────────
+   Key:   ENVIRONMENT
+   Value: production
+
+
+OPTIONAL VARIABLES (NICE TO HAVE)
+=================================
+
+4. GEMINI_API_KEY
+   ────────────────
+   Key:   GEMINI_API_KEY
+   Value: (Leave empty for now)
+
+   Optional: If you have a Gemini API key, add it
+   Get one at: https://ai.google.dev
+
+
+5. LOG_LEVEL
+   ──────────
+   Key:   LOG_LEVEL
+   Value: INFO
+
+   Optional: For debugging, use DEBUG
+            For production, use INFO
+
+
+COMPLETE CHECKLIST
+==================
+
+Add in this order in Render Web Service:
+
+Step 1: DATABASE_URL
+───────────────────
+☐ Copy from PostgreSQL credentials file (rendercreds)
+☐ Paste in Render Web Service → Environment
+☐ Name: DATABASE_URL
+☐ Value: postgresql://mf_user:PASSWORD@dpg-xxx.onrender.com:5432/mutual_funds
+
+
+Step 2: CORS_ORIGINS
+────────────────────
+☐ Name: CORS_ORIGINS
+☐ Value: http://localhost:3000
+
+
+Step 3: ENVIRONMENT
+───────────────────
+☐ Name: ENVIRONMENT
+☐ Value: production
+
+
+Step 4: GEMINI_API_KEY (Optional)
+─────────────────────────────────
+☐ Name: GEMINI_API_KEY
+☐ Value: (leave empty or add your key)
+
+
+Step 5: Click "Save Changes"
+────────────────────────────
+☐ Service will redeploy with new environment variables
+
+
+WHAT EACH VARIABLE DOES
+=======================
+
+DATABASE_URL
+────────────
+Tells your app where the PostgreSQL database is located
+Must be exact or app cannot connect to database
+If wrong, you'll see: "Database DOWN" error
+
+CORS_ORIGINS
+────────────
+Controls which websites can call your API
+Currently allows: localhost:3000 (for local testing)
+After Vercel deploy: Update to include your Vercel URL
+If wrong, frontend will show: "Cannot connect to API"
+
+ENVIRONMENT
+───────────
+Sets the app to production mode
+production = optimized for speed and stability
+development = shows debug information
+
+GEMINI_API_KEY
+──────────────
+Optional: For AI-powered fallback extraction
+Leave empty = everything works, just no AI fallback
+With key = AI helps parse difficult documents
+
+HOW TO ADD ENVIRONMENT VARIABLES IN RENDER
+===========================================
+
+1. Go to Render Dashboard
+2. Click on "mf-api" Web Service
+3. Click "Environment" tab
+4. Scroll to "Environment Variables" section
+5. For each variable:
+   ├─ Click "Add Environment Variable"
+   ├─ Enter Name (e.g., DATABASE_URL)
+   ├─ Enter Value (your actual value)
+   └─ Press Tab or click elsewhere to confirm
+6. Click "Save Changes" at bottom
+7. Service will redeploy (takes ~2-3 minutes)
+
+
+TESTING YOUR VARIABLES
+======================
+
+After adding variables and redeploying:
+
+1. Wait 2-3 minutes for service to redeploy
+2. Go to Render Dashboard → mf-api service
+3. Click "Logs" tab
+4. Look for any error messages starting with:
+   ├─ "ERROR" = something is wrong
+   ├─ "Connection refused" = DATABASE_URL is wrong
+   └─ "Successfully connected" = all good!
+5. Try the health endpoint:
+   https://mf-api-xxxxxxxxxxxx.onrender.com/health
+   Should show: {"status": "ok", "database": "UP"}
+
+
+COMMON MISTAKES
+===============
+
+❌ Using External Database URL instead of Internal
+   → App won't find the database
+   Solution: Copy INTERNAL URL from PostgreSQL credentials
+
+❌ Forgetting to click "Save Changes"
+   → Variables won't be applied
+   Solution: Click the button after adding all variables
+
+❌ Wrong DATABASE_URL format
+   → Connection fails
+   Solution: Copy-paste exactly from your credentials file
+
+❌ CORS_ORIGINS too restrictive
+   → Frontend can't reach API
+   Solution: Include both http://localhost:3000 and your Vercel URL
+
+
+UPDATING CORS_ORIGINS LATER
+===========================
+
+After you deploy frontend to Vercel:
+
+1. Note your Vercel URL: https://mf-analysis-xxxx.vercel.app
+2. Go to Render Dashboard → mf-api
+3. Click "Environment" tab
+4. Find CORS_ORIGINS variable
+5. Change to: https://mf-analysis-xxxx.vercel.app,http://localhost:3000
+6. Click "Save Changes"
+7. Service redeploys (~2-3 min)
+
+
+REFERENCE: YOUR CREDENTIALS
+============================
+
+Your PostgreSQL credentials should be saved in:
+  → rendercreds file in your project folder
+
+It should contain:
+  • Database URL (starts with postgresql://)
+  • Username (usually mf_user)
+  • Password (auto-generated)
+  • Database name (mutual_funds)
+  • Host (dpg-xxx.onrender.com)
+  • Port (5432)
+
+
+QUICK COPY-PASTE TEMPLATE
+=========================
+
+When adding to Render, use this template:
+
+Variable 1:
+  Name:  DATABASE_URL
+  Value: [COPY FROM YOUR CREDENTIALS FILE]
+
+Variable 2:
+  Name:  CORS_ORIGINS
+  Value: http://localhost:3000
+
+Variable 3:
+  Name:  ENVIRONMENT
+  Value: production
+
+Variable 4:
+  Name:  GEMINI_API_KEY
+  Value: (leave empty)
+
+
+NEXT STEPS AFTER ADDING ENV VARS
+================================
+
+1. ✅ Add all environment variables above
+2. ✅ Click "Save Changes"
+3. ✅ Wait 2-3 minutes for redeploy
+4. ✅ Check Logs for errors
+5. ✅ Test /health endpoint
+6. → Run migrations: alembic upgrade head
+7. → Deploy frontend on Vercel
+8. → Update CORS_ORIGINS with Vercel URL
+
+
+SUPPORT
+=======
+
+If database won't connect:
+→ Check DATABASE_URL in rendercreds matches exactly
+→ Verify PostgreSQL service is running (green status on Render)
+→ Check "Internal Database URL" (not External)
+
+If frontend can't reach API later:
+→ Update CORS_ORIGINS to include Vercel URL
+→ Make sure to click "Save Changes"
+→ Wait for service to redeploy
+
+================================================================================

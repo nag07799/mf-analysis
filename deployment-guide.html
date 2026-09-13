@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mutual Fund Platform - Deployment Guide</title>
+  <style>
+    :root {
+      --primary: #2563eb;
+      --success: #16a34a;
+      --warning: #ea580c;
+      --danger: #dc2626;
+      --bg: #f8fafc;
+      --border: #e2e8f0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      line-height: 1.6;
+      color: #1e293b;
+      background: var(--bg);
+      padding: 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      color: var(--primary);
+      border-bottom: 3px solid var(--primary);
+      padding-bottom: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    h2 {
+      color: var(--primary);
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      border-left: 4px solid var(--primary);
+      padding-left: 1rem;
+    }
+
+    .phase {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+
+    .phase h3 {
+      color: var(--primary);
+      margin-top: 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .step {
+      background: #f0f9ff;
+      border-left: 4px solid var(--primary);
+      padding: 1rem;
+      margin: 1rem 0;
+      border-radius: 4px;
+    }
+
+    .step strong {
+      color: var(--primary);
+    }
+
+    code {
+      background: #f1f5f9;
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      font-family: 'Monaco', 'Courier New', monospace;
+    }
+
+    .code {
+      background: #1e293b;
+      color: #e2e8f0;
+      padding: 1rem;
+      border-radius: 4px;
+      font-family: 'Monaco', 'Courier New', monospace;
+      font-size: 0.9em;
+      overflow-x: auto;
+      margin: 1rem 0;
+    }
+
+    .success {
+      background: #f0fdf4;
+      border-left-color: var(--success);
+      color: #166534;
+    }
+
+    .success strong {
+      color: var(--success);
+    }
+
+    .warning {
+      background: #fffbeb;
+      border-left-color: var(--warning);
+      color: #92400e;
+    }
+
+    .warning strong {
+      color: var(--warning);
+    }
+
+    .timeline {
+      display: flex;
+      justify-content: space-between;
+      margin: 2rem 0;
+      position: relative;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      top: 20px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--border);
+      z-index: 0;
+    }
+
+    .timeline-item {
+      position: relative;
+      z-index: 1;
+      flex: 1;
+      text-align: center;
+    }
+
+    .timeline-item::before {
+      content: '';
+      width: 40px;
+      height: 40px;
+      background: white;
+      border: 3px solid var(--primary);
+      border-radius: 50%;
+      margin: 0 auto 0.5rem;
+      display: block;
+    }
+
+    .timeline-item.done::before {
+      background: var(--success);
+      border-color: var(--success);
+    }
+
+    .timeline-item small {
+      display: block;
+      color: #64748b;
+      font-size: 0.85em;
+    }
+
+    .urls {
+      background: white;
+      border: 2px solid var(--primary);
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .url-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .url-item:last-child {
+      border-bottom: none;
+    }
+
+    .support {
+      background: #eff6ff;
+      border: 1px solid var(--primary);
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .support h3 {
+      color: var(--primary);
+      margin-top: 0;
+    }
+
+    a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    table tr {
+      border-bottom: 1px solid var(--border);
+    }
+
+    table td {
+      padding: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+
+<h1>🚀 Mutual Fund Platform - Deployment Guide</h1>
+
+<p><strong>Status:</strong> ✅ Code ready for deployment</p>
+<p><strong>Time required:</strong> ~30 minutes total</p>
+<p><strong>Cost:</strong> $0/month (free tier)</p>
+
+<div class="timeline">
+  <div class="timeline-item done">
+    <div>Git Setup</div>
+    <small>✓ Done</small>
+  </div>
+  <div class="timeline-item">
+    <div>GitHub</div>
+    <small>2 min</small>
+  </div>
+  <div class="timeline-item">
+    <div>Render Backend</div>
+    <small>10 min</small>
+  </div>
+  <div class="timeline-item">
+    <div>Vercel Frontend</div>
+    <small>8 min</small>
+  </div>
+  <div class="timeline-item">
+    <div>Testing</div>
+    <small>3 min</small>
+  </div>
+</div>
+
+<h2>📋 Your Deployment Checklist</h2>
+
+<div class="phase">
+  <h3>PHASE 1: Create GitHub Repository</h3>
+
+  <div class="step">
+    <strong>Step 1:</strong> Go to <a href="https://github.com/new" target="_blank">https://github.com/new</a>
+  </div>
+
+  <div class="step">
+    <strong>Step 2:</strong> Fill in:
+    <ul>
+      <li>Repository name: <code>mf-analysis</code></li>
+      <li>Description: <code>Indian Equity Mutual Fund Comparison Platform</code></li>
+      <li>Visibility: <strong>Public</strong> (important for free tier)</li>
+    </ul>
+  </div>
+
+  <div class="step">
+    <strong>Step 3:</strong> Click "Create repository"
+  </div>
+
+  <div class="step success">
+    <strong>✓ Copy your repository URL:</strong> It will look like<br>
+    <code>https://github.com/YOUR_USERNAME/mf-analysis.git</code>
+  </div>
+</div>
+
+<div class="phase">
+  <h3>PHASE 2: Push Code to GitHub</h3>
+
+  <div class="step">
+    <strong>Step 1:</strong> Open PowerShell in your project folder
+  </div>
+
+  <div class="step">
+    <strong>Step 2:</strong> Copy and paste these commands (one at a time):
+  </div>
+
+  <div class="code">git branch -M main</div>
+
+  <div class="code">git remote add origin https://github.com/YOUR_USERNAME/mf-analysis.git</div>
+
+  <div class="code">git push -u origin main</div>
+
+  <div class="step warning">
+    <strong>Note:</strong> When asked for password, use GitHub Personal Access Token from <a href="https://github.com/settings/tokens" target="_blank">https://github.com/settings/tokens</a>
+  </div>
+
+  <div class="step success">
+    <strong>✓ Success!</strong> You should see "Branch 'main' set up to track remote branch 'main'"
+  </div>
+</div>
+
+<div class="phase">
+  <h3>PHASE 3: Deploy Backend on Render</h3>
+
+  <div class="step">
+    <strong>3.1:</strong> Go to <a href="https://render.com" target="_blank">https://render.com</a> → Sign up with GitHub
+  </div>
+
+  <div class="step">
+    <strong>3.2:</strong> Create PostgreSQL Database
+  </div>
+
+  <div class="step">
+    <strong>3.3:</strong> Create Web Service with your repository
+  </div>
+
+  <div class="step">
+    <strong>3.4:</strong> Add Environment Variables:
+    <table>
+      <tr><td><strong>Key</strong></td><td><strong>Value</strong></td></tr>
+      <tr><td><code>DATABASE_URL</code></td><td>Your PostgreSQL connection string</td></tr>
+      <tr><td><code>CORS_ORIGINS</code></td><td><code>http://localhost:3000</code></td></tr>
+      <tr><td><code>ENVIRONMENT</code></td><td><code>production</code></td></tr>
+    </table>
+  </div>
+
+  <div class="step">
+    <strong>3.5:</strong> Run migrations: Go to Shell tab and run <code>alembic upgrade head</code>
+  </div>
+
+  <div class="step success">
+    <strong>✓ Backend is live!</strong> Your API URL will be shown on Render dashboard
+  </div>
+</div>
+
+<div class="phase">
+  <h3>PHASE 4: Deploy Frontend on Vercel</h3>
+
+  <div class="step">
+    <strong>4.1:</strong> Go to <a href="https://vercel.com" target="_blank">https://vercel.com</a> → Sign up with GitHub
+  </div>
+
+  <div class="step">
+    <strong>4.2:</strong> "Add New" → "Project" → Select <code>mf-analysis</code>
+  </div>
+
+  <div class="step">
+    <strong>4.3:</strong> Set Root Directory to <code>frontend</code>
+  </div>
+
+  <div class="step">
+    <strong>4.4:</strong> Add Environment Variable:
+    <ul>
+      <li>Name: <code>NEXT_PUBLIC_API_URL</code></li>
+      <li>Value: Your Render backend URL</li>
+    </ul>
+  </div>
+
+  <div class="step">
+    <strong>4.5:</strong> Click Deploy and wait
+  </div>
+
+  <div class="step success">
+    <strong>✓ Frontend is live!</strong> Your app URL will be shown
+  </div>
+</div>
+
+<div class="phase">
+  <h3>PHASE 5: Final Setup</h3>
+
+  <div class="step">
+    <strong>Update CORS on Render:</strong>
+    <ul>
+      <li>Go to mf-api service → Environment</li>
+      <li>Update CORS_ORIGINS to include your Vercel URL</li>
+      <li>Save changes</li>
+    </ul>
+  </div>
+
+  <div class="step success">
+    <strong>✓ Everything is connected!</strong>
+  </div>
+</div>
+
+<div class="urls">
+  <h3>🎉 Your Live URLs</h3>
+  <div class="url-item">
+    <span><strong>Frontend (Share this!):</strong></span>
+    <span><code>https://mf-analysis-xxx.vercel.app</code></span>
+  </div>
+  <div class="url-item">
+    <span><strong>Backend API:</strong></span>
+    <span><code>https://mf-api-xxx.onrender.com</code></span>
+  </div>
+  <div class="url-item">
+    <span><strong>API Docs:</strong></span>
+    <span><code>https://mf-api-xxx.onrender.com/docs</code></span>
+  </div>
+</div>
+
+<h2>📚 Documentation Files</h2>
+
+<div class="phase">
+  <ul>
+    <li><strong>DEPLOY_NOW.md</strong> - Complete detailed guide</li>
+    <li><strong>PUSH_TO_GITHUB.txt</strong> - Git commands reference</li>
+    <li><strong>ARCHITECTURE.md</strong> - System diagrams</li>
+    <li><strong>DEPLOYMENT.md</strong> - Technical docs</li>
+  </ul>
+</div>
+
+<div class="support">
+  <h3>❓ Need Help?</h3>
+  <p><strong>Read these files in order:</strong></p>
+  <ol>
+    <li><strong>DEPLOY_NOW.md</strong> for step-by-step guide</li>
+    <li><strong>PUSH_TO_GITHUB.txt</strong> for exact git commands</li>
+    <li><strong>DEPLOYMENT.md</strong> for troubleshooting</li>
+  </ol>
+  <p><strong>External Resources:</strong></p>
+  <ul>
+    <li><a href="https://render.com/docs" target="_blank">Render Docs</a></li>
+    <li><a href="https://vercel.com/docs" target="_blank">Vercel Docs</a></li>
+    <li><a href="https://nextjs.org/docs" target="_blank">Next.js Docs</a></li>
+  </ul>
+</div>
+
+<p style="text-align: center; margin-top: 3rem; color: #64748b;">
+  <strong>Ready to deploy? Follow the checklist above step by step.</strong><br>
+  Total time: ~30 minutes | Cost: $0/month
+</p>
+
+</body>
+</html>
