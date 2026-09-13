@@ -1,6 +1,11 @@
 .env
 .env.*
 !.env.example
+allvar_env.env
+rendercreds
+CORS_FINAL.txt
+RENDER_ENV_COPY_PASTE.txt
+RENDER_WEBSERVICE_ENV_VARS.txt
 
 # Python virtual environments
 .venv/
